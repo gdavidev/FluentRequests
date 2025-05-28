@@ -3,12 +3,55 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FluentRequests", "FluentRequests\FluentRequests.csproj", "{A325B351-00B6-4EC4-8D63-BBF774F23C8F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{77E6FE7B-9FC8-4750-ACA5-2DE0875FB8B4}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FluentRequests.Test", "FluentRequests.Test\FluentRequests.Test.csproj", "{BDC5B6F7-9A06-46D0-9479-6E2FD7AA2EC1}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FluentRequests.Test.Mock", "FluentRequests.Test.Mock\FluentRequests.Test.Mock.csproj", "{7E6C4672-37DC-40F3-80EC-B062E5644456}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{8DCADB82-C3C7-457C-991B-63651EE4651F}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Examples", "Examples", "{285F20C3-411C-4DBF-AF94-3540C95B4D14}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Examples.PokeAPIClient", "Examples.PokeAPIClient\Examples.PokeAPIClient.csproj", "{579E6A9D-8FA1-4FA3-9C89-960ACDE89C9E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A325B351-00B6-4EC4-8D63-BBF774F23C8F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A325B351-00B6-4EC4-8D63-BBF774F23C8F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A325B351-00B6-4EC4-8D63-BBF774F23C8F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A325B351-00B6-4EC4-8D63-BBF774F23C8F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BDC5B6F7-9A06-46D0-9479-6E2FD7AA2EC1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BDC5B6F7-9A06-46D0-9479-6E2FD7AA2EC1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BDC5B6F7-9A06-46D0-9479-6E2FD7AA2EC1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BDC5B6F7-9A06-46D0-9479-6E2FD7AA2EC1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7E6C4672-37DC-40F3-80EC-B062E5644456}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7E6C4672-37DC-40F3-80EC-B062E5644456}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7E6C4672-37DC-40F3-80EC-B062E5644456}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7E6C4672-37DC-40F3-80EC-B062E5644456}.Release|Any CPU.Build.0 = Release|Any CPU
+		{579E6A9D-8FA1-4FA3-9C89-960ACDE89C9E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{579E6A9D-8FA1-4FA3-9C89-960ACDE89C9E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{579E6A9D-8FA1-4FA3-9C89-960ACDE89C9E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{579E6A9D-8FA1-4FA3-9C89-960ACDE89C9E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{BDC5B6F7-9A06-46D0-9479-6E2FD7AA2EC1} = {77E6FE7B-9FC8-4750-ACA5-2DE0875FB8B4}
+		{7E6C4672-37DC-40F3-80EC-B062E5644456} = {77E6FE7B-9FC8-4750-ACA5-2DE0875FB8B4}
+		{579E6A9D-8FA1-4FA3-9C89-960ACDE89C9E} = {285F20C3-411C-4DBF-AF94-3540C95B4D14}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D6B1C149-789B-4941-BCA6-8BA8F77F1FB4}
 	EndGlobalSection
 EndGlobal
