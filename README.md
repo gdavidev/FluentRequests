@@ -53,17 +53,60 @@ resilence and caching.
 ---
 
 ## 🔥 Example Usage (Preview Concept)
-
+### 1. Minimal Request
 ```csharp
-var response = await RequestsClient
+var products = await Requests
     .GetAsync<IEnumerable<ProductDTO>>("https://api.example.com/products")
-    .WithAuth(new Requests.BasicAuthHeader("example@email.com", "super-secret-password"))
+    .Send();
+```
+
+### 2. Client Builder
+```csharp
+RequestsClient client = await Requests
+    .BaseUrl("https://api.example.com/")
+    .Build();
+
+IEnumerable<ProductDTO> products = client.GetAsync<IEnumerable<ProductDTO>>("/products");
+IEnumerable<WarehousesDTO> warehouses = client.GetAsync<IEnumerable<ProductDTO>>("/warehouses");
+```
+
+### 3. Pagination
+```csharp
+RequestsClient client = await Requests
+    .GetAsync<IEnumerable<ProductDTO>>("https://api.example.com/products")
+    .WithAuth(new BasicAuthHeader("example@email.com", "super-secret-password"))
     .WithQueryPagination(page: 1, pageSize: 20)
     .WithQueryParam("status", "active")
-    .Send();
+    .Build();
 
-IEnumerable<ProductDTO> products = response.Result;
-while (response.Next()) // returns true if the current page had overflown the page size (e.g. Count == pageSize)
+IEnumerable<ProductDTO> products = [];
+while (client.Next()) // returns true if the current page had overflown the page size (e.g. Count == pageSize)
 {
     products.AddRange(response.Result);
 }
+```
+
+### 4. LINQ
+```csharp
+List<Product> products = await Requests
+    .GetAsync<IEnumerable<ProductDTO>>("https://api.example.com/products")    
+    .Select(res => mapper.Map<Product>(res.Body))
+    .Where(res => res.Active)
+    .ToList();
+```
+
+### 5. Error Handling
+```csharp
+record ErrorResponse(bool Success, string Errors);
+
+var location = "";
+var response = await Requests
+    .PostAsync("https://api.example.com/products")
+    .WithAuth(new Requests.BasicAuthHeader("example@email.com", "super-secret-password"))
+    .WithBody(new ProductDTO("Pizza", 14.3))
+    .OnStatusCode(HttpStatusCode.Created, context => location = context.Response.Headers.Get("Location"))
+    .OnStatusCode(HttpStatusCode.BadRequest, context => ShowMessage(context.Response.GetBody<ErrorResponse>().Errors))
+    .Send();
+
+ShowMessage($"Created at: {location}");
+```
