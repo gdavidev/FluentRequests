@@ -5,7 +5,7 @@ namespace FluentRequests.Builder
 {
     public class RequestBuilder<TResponse>
     {
-        public RequestContext Context { get; set; }
+        public RequestContext Context { get; init; }
 
         public RequestBuilder(string url, RequestContext context)
         {
@@ -15,8 +15,11 @@ namespace FluentRequests.Builder
 
         public RequestBuilder(string url, HttpMethod? method)
         {            
-            Context = new RequestContext() { Method = method ?? HttpMethod.Get };
-            Context.Url = url;
+            Context = new RequestContext()
+            {
+                Method = method ?? HttpMethod.Get,
+                Url = url
+            };
         }
 
         public RequestBuilder<TResponse> WithBody(object body)
@@ -43,9 +46,9 @@ namespace FluentRequests.Builder
             return this;
         }
 
-        public RequestBuilder<TResponse> WithConfig(Action<RequestContext> contextBuilder)
+        public RequestBuilder<TResponse> WithMaxRetries(int maxRetries)
         {
-            contextBuilder(Context);
+            Context.MaxRetries = maxRetries;
             return this;
         }
 

@@ -1,8 +1,23 @@
 {
   "version": 2,
-  "dgSpecHash": "qnyY+3WRqavFBWrdJzk4x/SN+tMEIJ1/1g/FvLvwrxAb+kLAL5Xsp/Iy+IeXNMMFALEcDwJf3aeEUSIjP6Knww==",
+  "dgSpecHash": "xn0JxvRfwoc=",
   "success": true,
-  "projectFilePath": "D:\\Documents\\Projects\\FluentRequests\\FluentRequests\\FluentRequests.csproj",
-  "expectedPackageFiles": [],
+  "projectFilePath": "/home/david/RiderProjects/FluentRequests/FluentRequests/FluentRequests.csproj",
+  "expectedPackageFiles": [
+    "/home/david/.nuget/packages/microsoft.extensions.configuration/10.0.0-preview.4.25258.110/microsoft.extensions.configuration.10.0.0-preview.4.25258.110.nupkg.sha512",
+    "/home/david/.nuget/packages/microsoft.extensions.configuration.abstractions/10.0.0-preview.4.25258.110/microsoft.extensions.configuration.abstractions.10.0.0-preview.4.25258.110.nupkg.sha512",
+    "/home/david/.nuget/packages/microsoft.extensions.configuration.binder/10.0.0-preview.4.25258.110/microsoft.extensions.configuration.binder.10.0.0-preview.4.25258.110.nupkg.sha512",
+    "/home/david/.nuget/packages/microsoft.extensions.dependencyinjection/10.0.0-preview.4.25258.110/microsoft.extensions.dependencyinjection.10.0.0-preview.4.25258.110.nupkg.sha512",
+    "/home/david/.nuget/packages/microsoft.extensions.dependencyinjection.abstractions/10.0.0-preview.4.25258.110/microsoft.extensions.dependencyinjection.abstractions.10.0.0-preview.4.25258.110.nupkg.sha512",
+    "/home/david/.nuget/packages/microsoft.extensions.diagnostics/10.0.0-preview.4.25258.110/microsoft.extensions.diagnostics.10.0.0-preview.4.25258.110.nupkg.sha512",
+    "/home/david/.nuget/packages/microsoft.extensions.diagnostics.abstractions/10.0.0-preview.4.25258.110/microsoft.extensions.diagnostics.abstractions.10.0.0-preview.4.25258.110.nupkg.sha512",
+    "/home/david/.nuget/packages/microsoft.extensions.http/10.0.0-preview.4.25258.110/microsoft.extensions.http.10.0.0-preview.4.25258.110.nupkg.sha512",
+    "/home/david/.nuget/packages/microsoft.extensions.logging/10.0.0-preview.4.25258.110/microsoft.extensions.logging.10.0.0-preview.4.25258.110.nupkg.sha512",
+    "/home/david/.nuget/packages/microsoft.extensions.logging.abstractions/10.0.0-preview.4.25258.110/microsoft.extensions.logging.abstractions.10.0.0-preview.4.25258.110.nupkg.sha512",
+    "/home/david/.nuget/packages/microsoft.extensions.options/10.0.0-preview.4.25258.110/microsoft.extensions.options.10.0.0-preview.4.25258.110.nupkg.sha512",
+    "/home/david/.nuget/packages/microsoft.extensions.options.configurationextensions/10.0.0-preview.4.25258.110/microsoft.extensions.options.configurationextensions.10.0.0-preview.4.25258.110.nupkg.sha512",
+    "/home/david/.nuget/packages/microsoft.extensions.primitives/10.0.0-preview.4.25258.110/microsoft.extensions.primitives.10.0.0-preview.4.25258.110.nupkg.sha512",
+    "/home/david/.nuget/packages/system.diagnostics.diagnosticsource/10.0.0-preview.4.25258.110/system.diagnostics.diagnosticsource.10.0.0-preview.4.25258.110.nupkg.sha512"
+  ],
   "logs": []
 }

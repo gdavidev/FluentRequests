@@ -6,6 +6,7 @@ namespace FluentRequests.Data
     {
         public string Url { get; } = "";
         public TResponse? Data { get; }
+        public RequestContext Context { get; set; }
         public HttpStatusCode StatusCode { get; }
         public int TimeMs { get; }
 
