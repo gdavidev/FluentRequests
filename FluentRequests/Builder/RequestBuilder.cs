@@ -1,60 +1,71 @@
 ﻿using FluentRequests.Builder.Headers.Auth;
 using FluentRequests.Data;
+using FluentRequests.Exceptions;
 
 namespace FluentRequests.Builder
 {
-    public class RequestBuilder<TResponse>
+    public class RequestBuilder<TResponse>(RequestContext context)
     {
-        public RequestContext Context { get; init; }
-
-        public RequestBuilder(string url, RequestContext context)
-        {
-            Context = context;
-            Context.Url = url;
-        }
-
-        public RequestBuilder(string url, HttpMethod? method)
-        {            
-            Context = new RequestContext()
-            {
-                Method = method ?? HttpMethod.Get,
-                Url = url
-            };
-        }
-
         public RequestBuilder<TResponse> WithBody(object body)
         {
-            Context.Body = body;
+            context.Body = body;
             return this;
         }
 
-        public RequestBuilder<TResponse> WithQuery<TQuery>(TQuery query)
+        public RequestBuilder<TResponse> WithQuery(object query)
         {
-            Context.Query = query;
+            context.Query = query;
+            return this;
+        }
+
+        public RequestBuilder<TResponse> WithRouteParams(object routeParams)
+        {
+            context.RouteParams = routeParams;
             return this;
         }
 
         public RequestBuilder<TResponse> WithAuth(IAuthHeader header)
         {
-            Context.Headers.Add("Authentication", header);
+            context.Headers.Add("Authentication", header);
             return this;
         }
 
         public RequestBuilder<TResponse> WithAuth(string headerAuthPropertyName, IAuthHeader header)
         {
-            Context.Headers.Add(headerAuthPropertyName, header);
+            context.Headers.Add(headerAuthPropertyName, header);
             return this;
         }
 
         public RequestBuilder<TResponse> WithMaxRetries(int maxRetries)
         {
-            Context.MaxRetries = maxRetries;
+            context.MaxRetries = maxRetries;
             return this;
+        }
+
+        public RequestBuilder<TResponse> WithPagination(int page, int pageSize)
+        {
+            context.CurrentPage = page;
+            context.PageSize = pageSize;
+            return this;
+        }
+
+        public RequestsResult<TResponse> Build()
+        {
+            if (context.HttpRequestClient is null)
+                throw new RequestBuildException("Could not get HttpClient instance", "Build");
+            
+            return new RequestsResult<TResponse>();
         }
 
         public async Task<RequestsResult<TResponse>> SendAsync()
         {
-            return new RequestsResult<TResponse>();
+            if (context.HttpRequestClient is null)
+                throw new RequestBuildException("Could not get HttpClient instance", "SendAsync");
+
+            var client = new RequestsHttpClient();
+            var result = await client.SendRequestAsync<TResponse>(context);
+
+            return result;
         }
     }
 }

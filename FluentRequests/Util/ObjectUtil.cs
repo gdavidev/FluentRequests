@@ -1,6 +1,6 @@
 namespace FluentRequests.Util;
 
-public static class ObjectUtil
+internal static class ObjectUtil
 {
     public static Dictionary<string, object?> ToDictionary(object obj)
     {

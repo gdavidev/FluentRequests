@@ -1,75 +1,93 @@
 ﻿using FluentRequests.Builder;
 using FluentRequests.Data;
+using System.Net;
 
 namespace FluentRequests;
 
-public class Requests
+public static class Requests
 {
-    // - POST ------------------------------------
-    public static RequestBuilder<TResponse> Post<TResponse>(string url) => 
-        new(url, HttpMethod.Post);
-    
-    public static RequestBuilder<TResponse> Post<TResponse>(string url, RequestContext context) =>
-        CreateBuilderWithProvidedContext<TResponse>(url, HttpMethod.Post, context);
+    private static readonly HttpClient _httpClient = CreateDefaultClient();
 
-    public static RequestBuilder<TResponse> Post<TResponse>(string url, Action<RequestContext> contextBuilder) =>
-        CreateBuilderWithContextBuilderAction<TResponse>(url, HttpMethod.Post, contextBuilder);
-
-    // - GET -------------------------------------
-    public static RequestBuilder<TResponse> Get<TResponse>(string url) =>
-        new(url, HttpMethod.Get);
-
-    public static RequestBuilder<TResponse> Get<TResponse>(string url, RequestContext context) =>
-        CreateBuilderWithProvidedContext<TResponse>(url, HttpMethod.Get, context);
-
-    public static RequestBuilder<TResponse> Get<TResponse>(string url, Action<RequestContext> contextBuilder) =>
-        CreateBuilderWithContextBuilderAction<TResponse>(url, HttpMethod.Get, contextBuilder);
-
-    // - PUT -------------------------------------
-    public static RequestBuilder<TResponse> Put<TResponse>(string url) =>
-        new(url, HttpMethod.Put);
-
-    public static RequestBuilder<TResponse> Put<TResponse>(string url, RequestContext context) =>
-        CreateBuilderWithProvidedContext<TResponse>(url, HttpMethod.Put, context);
-
-    public static RequestBuilder<TResponse> Put<TResponse>(string url, Action<RequestContext> contextBuilder) =>
-        CreateBuilderWithContextBuilderAction<TResponse>(url, HttpMethod.Put, contextBuilder);
-
-    // - PATCH -----------------------------------
-    public static RequestBuilder<TResponse> Patch<TResponse>(string url) =>
-        new(url, HttpMethod.Patch);
-
-    public static RequestBuilder<TResponse> Patch<TResponse>(string url, RequestContext context) =>
-        CreateBuilderWithProvidedContext<TResponse>(url, HttpMethod.Patch, context);
-
-    public static RequestBuilder<TResponse> Patch<TResponse>(string url, Action<RequestContext> contextBuilder) =>
-        CreateBuilderWithContextBuilderAction<TResponse>(url, HttpMethod.Patch, contextBuilder);
-
-    // - DELETE ----------------------------------
-    public static RequestBuilder<TResponse> Delete<TResponse>(string url) =>
-        new(url, HttpMethod.Delete);
-
-    public static RequestBuilder<TResponse> Delete<TResponse>(string url, RequestContext context) =>
-        CreateBuilderWithProvidedContext<TResponse>(url, HttpMethod.Delete, context);
-
-    public static RequestBuilder<TResponse> Delete<TResponse>(string url, Action<RequestContext> contextBuilder) =>
-        CreateBuilderWithContextBuilderAction<TResponse>(url, HttpMethod.Delete, contextBuilder);
-
-    private static RequestBuilder<TResponse> CreateBuilderWithProvidedContext<TResponse>(string url, HttpMethod method, RequestContext context)
+    private static HttpClient CreateDefaultClient()
     {
-        context.Method = method;
-
-        return new RequestBuilder<TResponse>(url, method)
+        var handler = new HttpClientHandler
         {
-            Context = context
+            AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate
+        };
+        return new HttpClient(handler)
+        {
+            Timeout = TimeSpan.FromSeconds(30)
         };
     }
 
-    private static RequestBuilder<TResponse> CreateBuilderWithContextBuilderAction<TResponse>(string url, HttpMethod method, Action<RequestContext> contextBuilder)
-    {
-        var builder = new RequestBuilder<TResponse>(url, method);
+    // - POST ------------------------------------
+    public static RequestBuilder<TResponse> Post<TResponse>(string uri) =>
+        new(new RequestContext() { Uri = uri, HttpRequestClient = _httpClient, Method = HttpMethod.Post });
 
-        contextBuilder(builder.Context);
-        return builder;
+    public static RequestBuilder<TResponse> Post<TResponse>(string uri, RequestContext context) =>
+        CreateBuilderWithProvidedContext<TResponse>(uri, HttpMethod.Post, context);
+
+    public static RequestBuilder<TResponse> Post<TResponse>(string uri, Action<RequestContext> contextBuilder) =>
+        CreateBuilderWithContextBuilderAction<TResponse>(uri, HttpMethod.Post, contextBuilder);
+
+    // - GET -------------------------------------
+    public static RequestBuilder<TResponse> Get<TResponse>(string uri) =>
+        new(new RequestContext() { Uri = uri, HttpRequestClient = _httpClient, Method = HttpMethod.Get });
+
+    public static RequestBuilder<TResponse> Get<TResponse>(string uri, RequestContext context) =>
+        CreateBuilderWithProvidedContext<TResponse>(uri, HttpMethod.Get, context);
+
+    public static RequestBuilder<TResponse> Get<TResponse>(string uri, Action<RequestContext> contextBuilder) =>
+        CreateBuilderWithContextBuilderAction<TResponse>(uri, HttpMethod.Get, contextBuilder);
+
+    // - PUT -------------------------------------
+    public static RequestBuilder<TResponse> Put<TResponse>(string uri) =>
+        new(new RequestContext() { Uri = uri, HttpRequestClient = _httpClient, Method = HttpMethod.Put });
+
+    public static RequestBuilder<TResponse> Put<TResponse>(string uri, RequestContext context) =>
+        CreateBuilderWithProvidedContext<TResponse>(uri, HttpMethod.Put, context);
+
+    public static RequestBuilder<TResponse> Put<TResponse>(string uri, Action<RequestContext> contextBuilder) =>
+        CreateBuilderWithContextBuilderAction<TResponse>(uri, HttpMethod.Put, contextBuilder);
+
+    // - PATCH -----------------------------------
+    public static RequestBuilder<TResponse> Patch<TResponse>(string uri) =>
+        new(new RequestContext() { Uri = uri, HttpRequestClient = _httpClient, Method = HttpMethod.Patch });
+
+    public static RequestBuilder<TResponse> Patch<TResponse>(string uri, RequestContext context) =>
+        CreateBuilderWithProvidedContext<TResponse>(uri, HttpMethod.Patch, context);
+
+    public static RequestBuilder<TResponse> Patch<TResponse>(string uri, Action<RequestContext> contextBuilder) =>
+        CreateBuilderWithContextBuilderAction<TResponse>(uri, HttpMethod.Patch, contextBuilder);
+
+    // - DELETE ----------------------------------
+    public static RequestBuilder<TResponse> Delete<TResponse>(string uri) =>
+        new(new RequestContext() { Uri = uri, HttpRequestClient = _httpClient, Method = HttpMethod.Delete });
+
+    public static RequestBuilder<TResponse> Delete<TResponse>(string uri, RequestContext context) =>
+        CreateBuilderWithProvidedContext<TResponse>(uri, HttpMethod.Delete, context);
+
+    public static RequestBuilder<TResponse> Delete<TResponse>(string uri, Action<RequestContext> contextBuilder) =>
+        CreateBuilderWithContextBuilderAction<TResponse>(uri, HttpMethod.Delete, contextBuilder);
+
+    // - Utility ----------------------------------
+    private static RequestBuilder<TResponse> CreateBuilderWithProvidedContext<TResponse>(string uri, HttpMethod method, RequestContext context)
+    {
+        context.Uri = uri;
+        context.Method = method;
+
+        return new RequestBuilder<TResponse>(context);
+    }
+
+    private static RequestBuilder<TResponse> CreateBuilderWithContextBuilderAction<TResponse>(string uri, HttpMethod method, Action<RequestContext> contextBuilder)
+    {
+        var context = new RequestContext(); 
+        contextBuilder.Invoke(context);
+        
+        context.Method = method;
+        context.Uri = uri;
+        context.HttpRequestClient ??= _httpClient;
+
+        return new RequestBuilder<TResponse>(context); 
     }
 }

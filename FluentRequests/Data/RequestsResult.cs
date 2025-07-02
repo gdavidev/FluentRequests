@@ -4,11 +4,11 @@ namespace FluentRequests.Data
 {
     public class RequestsResult<TResponse>
     {
-        public string Url { get; } = "";
-        public TResponse? Data { get; }
+        public string Uri { get; internal set; } = string.Empty;
+        public TResponse? Data { get; internal set; }
+        public HttpStatusCode StatusCode { get; internal set; }
+        public int TimeMs { get; internal set; }
         public RequestContext Context { get; set; }
-        public HttpStatusCode StatusCode { get; }
-        public int TimeMs { get; }
 
         public void Retry()
         {

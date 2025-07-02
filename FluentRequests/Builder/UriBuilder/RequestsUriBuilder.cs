@@ -1,4 +1,4 @@
-using System.Web;
+using FluentRequests.Parsing;
 
 namespace FluentRequests.Builder.UriBuilder;
 
@@ -10,11 +10,9 @@ public class RequestsUriBuilder(string uri)
     
     public string Build()
     {
-        _uri = RouteParams is not null ? UriRouteParamsHandler.Apply(_uri, RouteParams) : _uri;
-        _uri = QueryParams is not null ? UriQueryParamsHandler.Apply(_uri, QueryParams) : _uri;
+        _uri = RouteParams is not null ? UriRouteParser.Apply(_uri, RouteParams) : _uri;
+        _uri = QueryParams is not null ? QueryStringParser.Parse(QueryParams) : _uri;
         
         return _uri;
     }
-    
-    
 }
