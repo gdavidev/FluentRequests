@@ -57,12 +57,12 @@ resilence and caching.
 ```csharp
 var products = await Requests
     .GetAsync<IEnumerable<ProductDTO>>("https://api.example.com/products")
-    .Send();
+    .SendAsync();
 ```
 
 ### 2. Client Builder
 ```csharp
-RequestsClient client = await Requests
+RequestsClient client = Requests
     .BaseUrl("https://api.example.com/")
     .Build();
 
@@ -72,7 +72,7 @@ IEnumerable<WarehousesDTO> warehouses = client.GetAsync<IEnumerable<ProductDTO>>
 
 ### 3. Pagination
 ```csharp
-RequestsClient client = await Requests
+RequestsClient client = Requests
     .GetAsync<IEnumerable<ProductDTO>>("https://api.example.com/products")
     .WithAuth(new BasicAuthHeader("example@email.com", "super-secret-password"))
     .WithQueryPagination(page: 1, pageSize: 20)
@@ -92,7 +92,7 @@ List<Product> products = await Requests
     .GetAsync<IEnumerable<ProductDTO>>("https://api.example.com/products")    
     .Select(res => mapper.Map<Product>(res.Body))
     .Where(res => res.Active)
-    .ToList();
+    .ToListAsync();
 ```
 
 ### 5. Error Handling
@@ -106,7 +106,7 @@ var response = await Requests
     .WithBody(new ProductDTO("Pizza", 14.3))
     .OnStatusCode(HttpStatusCode.Created, context => location = context.Response.Headers.Get("Location"))
     .OnStatusCode(HttpStatusCode.BadRequest, context => ShowMessage(context.Response.GetBody<ErrorResponse>().Errors))
-    .Send();
+    .SendAsync();
 
 ShowMessage($"Created at: {location}");
 ```
