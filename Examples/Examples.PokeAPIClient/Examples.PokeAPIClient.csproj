@@ -8,7 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\FluentRequests\FluentRequests.csproj" />
+    <ProjectReference Include="..\..\Source\DaveCommonsSoftware.Lib.Requests.csproj" />
   </ItemGroup>
 
 </Project>
