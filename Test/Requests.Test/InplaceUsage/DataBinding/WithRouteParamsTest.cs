@@ -1,5 +1,5 @@
-﻿using DaveCommonsSoftware.Lib.Requests.Builder;
-using DaveCommonsSoftware.Lib.Requests.Data;
+﻿using DaveCommonsSoftware.Lib.Requests.Abstractions.Data;
+using DaveCommonsSoftware.Lib.Requests.Builder;
 using Requests.Test.Mock.Mocks;
 using System.Net;
 
@@ -18,7 +18,7 @@ namespace Requests.Test.InplaceUsage.DataBinding
             var productId = 16;
 
             // - Act ----------
-            RequestsResult<string> result = await RequestBuilder
+            IRequestsResult<string> result = await RequestBuilder
                 .Post<string>(targetUri, context => context.HttpRequestClient = mockedHttpClient)
                 .WithRouteParams(productId)
                 .SendAsync();
@@ -39,7 +39,7 @@ namespace Requests.Test.InplaceUsage.DataBinding
             var productId = 16;
 
             // - Act ----------
-            RequestsResult<string> result = await RequestBuilder
+            IRequestsResult<string> result = await RequestBuilder
                 .Post<string>(targetUri, context => context.HttpRequestClient = mockedHttpClient)
                 .WithRouteParams(new { Id = productId })
                 .SendAsync();
@@ -61,7 +61,7 @@ namespace Requests.Test.InplaceUsage.DataBinding
             var productId = 16;
 
             // - Act ----------
-            RequestsResult<string> result = await RequestBuilder
+            IRequestsResult<string> result = await RequestBuilder
                 .Post<string>(targetUri, context => context.HttpRequestClient = mockedHttpClient)
                 .WithRouteParams(new { WarehouseId = warehouseId, Id = productId })
                 .SendAsync();
@@ -83,7 +83,7 @@ namespace Requests.Test.InplaceUsage.DataBinding
             var productId = 16;
 
             // - Act ----------
-            RequestsResult<string> result = await RequestBuilder
+            IRequestsResult<string> result = await RequestBuilder
                 .Post<string>(targetUri, context => context.HttpRequestClient = mockedHttpClient)
                 .WithRouteParams(new { WarehouseId = warehouseId, Id = productId })
                 .SendAsync();

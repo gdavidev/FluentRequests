@@ -1,4 +1,4 @@
-﻿namespace DaveCommonsSoftware.Lib.Requests.Builder.Headers.Auth
+﻿namespace DaveCommonsSoftware.Lib.Requests.Abstractions.Builder.Headers.Auth
 {
     public interface IAuthHeader : IHttpHeader
     {

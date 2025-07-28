@@ -21,6 +21,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Requests.Test.Mock", "Test\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DaveCommonsSoftware.Lib.Requests", "Source\DaveCommonsSoftware.Lib.Requests.csproj", "{43724BA9-766C-B8DE-A161-E48DF44355F0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DaveCommonsSoftware.Lib.Requests.Abstractions", "DaveCommonsSoftware.Lib.Requests.Abstractions\DaveCommonsSoftware.Lib.Requests.Abstractions.csproj", "{B6B4F601-5A1A-4CC2-80C0-F376BE540DE1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -47,6 +49,10 @@ Global
 		{43724BA9-766C-B8DE-A161-E48DF44355F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{43724BA9-766C-B8DE-A161-E48DF44355F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{43724BA9-766C-B8DE-A161-E48DF44355F0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B6B4F601-5A1A-4CC2-80C0-F376BE540DE1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B6B4F601-5A1A-4CC2-80C0-F376BE540DE1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B6B4F601-5A1A-4CC2-80C0-F376BE540DE1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B6B4F601-5A1A-4CC2-80C0-F376BE540DE1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -58,6 +64,7 @@ Global
 		{589C98B8-6DE8-8103-7756-94CC8AEE5635} = {77E6FE7B-9FC8-4750-ACA5-2DE0875FB8B4}
 		{DAA9E4EF-A771-52E6-88B6-0D44E6D3254C} = {77E6FE7B-9FC8-4750-ACA5-2DE0875FB8B4}
 		{43724BA9-766C-B8DE-A161-E48DF44355F0} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{B6B4F601-5A1A-4CC2-80C0-F376BE540DE1} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D6B1C149-789B-4941-BCA6-8BA8F77F1FB4}

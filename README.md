@@ -1,4 +1,4 @@
-﻿# RequestsClient
+﻿# DaveCommonsSoftware.Lib.Requests
 
 A fluent, declarative, and developer-friendly HTTP client for .NET.  
 Designed to simplify API consumption with clean syntax, type safety, and robust features.
@@ -29,7 +29,7 @@ resilence and caching.
 | Stage | Milestone | Status |
 |-------|-----------|--------|
 | **Phase 1** | 📦 Project Initialization | ✅ Done |
-|             | 🏗️ Plan the Basic API Surface | 🔄 In Progress |
+|             | 🏗️ Plan the Basic API Surface | ✅ Done |
 |             | 🚀 Implement Basic Fluent Request Pipeline | 🔄 In Progress |
 |             | ⚙️ Quick "On Spot" Requests (ad-hoc usage) | 🔜 Planned |
 |             | 🔧 Build Core DSL for Declarative Clients | 🔜 Planned |

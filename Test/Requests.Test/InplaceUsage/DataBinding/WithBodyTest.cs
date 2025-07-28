@@ -1,4 +1,4 @@
-﻿using DaveCommonsSoftware.Lib.Requests.Data;
+﻿using DaveCommonsSoftware.Lib.Requests.Abstractions.Data;
 using DaveCommonsSoftware.Lib.Requests.Builder;
 using Requests.Test.Mock.Mocks;
 using Requests.Test.Mock.Samples.Login;
@@ -28,7 +28,7 @@ namespace Requests.Test.InplaceUsage.DataBinding
             var mockedHttpClient = new HttpClient(mockedMessageHandler.Object);
 
             // - Act ----------
-            RequestsResult<string> result = await RequestBuilder
+            IRequestsResult<string> result = await RequestBuilder
                 .Post<string>("https://example.com/auth", context => context.HttpRequestClient = mockedHttpClient)
                 .WithBody(requestBody)
                 .SendAsync();
@@ -60,7 +60,7 @@ namespace Requests.Test.InplaceUsage.DataBinding
             var mockedHttpClient = new HttpClient(mockedMessageHandler.Object);
 
             // - Act ----------
-            RequestsResult<string> result = await RequestBuilder
+            IRequestsResult<string> result = await RequestBuilder
                 .Post<string>("https://example.com/auth", context => context.HttpRequestClient = mockedHttpClient)
                 .WithBody(requestBody)
                 .SendAsync();

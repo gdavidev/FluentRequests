@@ -1,5 +1,5 @@
+using DaveCommonsSoftware.Lib.Requests.Abstractions.Data;
 using DaveCommonsSoftware.Lib.Requests.Builder;
-using DaveCommonsSoftware.Lib.Requests.Data;
 using Moq;
 using Moq.Protected;
 using Requests.Test.Mock.Mocks;
@@ -18,7 +18,7 @@ namespace Requests.Test.InplaceUsage
             var mockedHttpClient = new HttpClient(mockedMessageHandler.Object);
 
             // - Act ----------
-            RequestsResult<string> result = await RequestBuilder
+            IRequestsResult<string> result = await RequestBuilder
                 .Post<string>("https://example.com/auth", context => context.HttpRequestClient = mockedHttpClient)
                 .SendAsync();
 
@@ -36,7 +36,7 @@ namespace Requests.Test.InplaceUsage
             var mockedHttpClient = HttpClientMock.Create("", targetStatusCode);
 
             // - Act ----------
-            RequestsResult<string> result = await RequestBuilder
+            IRequestsResult<string> result = await RequestBuilder
                 .Post<string>("https://example.com/auth", context => context.HttpRequestClient = mockedHttpClient)
                 .SendAsync();
 
@@ -52,7 +52,7 @@ namespace Requests.Test.InplaceUsage
             var mockedHttpClient = HttpClientMock.Create("", HttpStatusCode.OK);
 
             // - Act ----------
-            RequestsResult<string> result = await RequestBuilder
+            IRequestsResult<string> result = await RequestBuilder
                 .Post<string>(targetUri, context => context.HttpRequestClient = mockedHttpClient)
                 .SendAsync();
 
@@ -72,7 +72,7 @@ namespace Requests.Test.InplaceUsage
             var mockedHttpClient = HttpClientMock.Create(responseBody, HttpStatusCode.OK);
 
             // - Act ----------
-            RequestsResult<SampleLoginResponse> result = await RequestBuilder
+            IRequestsResult<SampleLoginResponse> result = await RequestBuilder
                 .Post<SampleLoginResponse>("https://example.com/auth", context => context.HttpRequestClient = mockedHttpClient)
                 .SendAsync();
 

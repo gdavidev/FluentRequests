@@ -1,23 +1,25 @@
-﻿using DaveCommonsSoftware.Lib.Requests.Builder.Headers;
+﻿using DaveCommonsSoftware.Lib.Requests.Abstractions.Builder.Headers;
+using DaveCommonsSoftware.Lib.Requests.Abstractions.Data;
 
 namespace DaveCommonsSoftware.Lib.Requests.Data
-{
-    public class RequestContext
+{   
+    public class RequestContext : IRequestContext
     {
-        internal HttpClient? HttpRequestClient { get; set; } = null;
+        public HttpClient? HttpRequestClient { get; set; } = null;
 
-        public HttpMethod Method { get; internal set; } = HttpMethod.Get;
-        public string Uri { get; internal set; } = "";
         public Dictionary<string, IHttpHeader> Headers { get; set; } = [];
-        public object? Body { get; set; }
-        public object? Query { get; set; }
-        public object? Form { get; set; }
-        public object? RouteParams { get; set; }
-        public int CurrentTry { get; internal set; } = 0;
+        public int CurrentTry { get; set; } = 0;
         public int? MaxRetries { get; set; } = null;
 
+        public object? Body { get; set; }
+        public object? Query { get; set; }        
+        public object? RouteParams { get; set; }
+
+        public HttpMethod Method { get; set; } = HttpMethod.Get;
+        public string Uri { get; set; } = "";
+
         // Pagination
-        public int CurrentPage { get; internal set; } = 0;
-        public int PageSize { get; internal set; } = 0;
+        public int CurrentPage { get; set; } = 0;
+        public int PageSize { get; set; } = 0;
     }
 }
